@@ -27,7 +27,9 @@ Afterwards, implementation of the same will be done within the
 
 ### Non-Goals
 
-This specification does not deal with ``software-raid`` and extension for it.
+- This specification does not deal with ``software-raid`` and extension for it. 
+- It does not attempt to cover any generic (vendor agnostic)  naming convention for disks or controllers.
+- It does not cover testing for hardware from all the vendors. It will only be tested on Dell EMC hardware, and other vendors will have to test it on their hardware.
 
 ## Proposal
 
@@ -132,13 +134,11 @@ The code will be tested in a development environment with a
 stand-alone deployment of the ``baremetal-operator`` and ``ironic``.
 A number of deployments will be performed with various combinations of
 ``physicalDisks`` and ``controller`` fields, and RAID levels; to test maximum possibilities.
+The RAID levels 0, 1, 5, 6, 1+0, 5+0 and 6+0 will be tested with the extended parameters.
 
 Unit testing will be performed to ensure that the physical disks and controllers added to the BMH YAML RAID configuration are added correctly to the `logicalDisks` field of the `nodes` object.
 
-Testing will only be performed for ``idrac-wsman``, since that is the only
-availability at the moment. That is to say, with Dell EMC hardware.
-
-Other vendors will have to test the code accordingly.
+Testing will only be performed for ``idrac-wsman``, since only that is available at the moment. (i.e. with Dell EMC hardware). Other vendors will have to test the code accordingly.
 
 ### Upgrade / Downgrade Strategy
 
